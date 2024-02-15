@@ -1,4 +1,6 @@
 describe('Add/Remove Elements Page', () => {
+  const PAGE_URL = 'add_remove_elements/';
+
   describe('Navigation', () => {
     it('Should be linked correctly from home page', () => {
       // Visit home page and click the correct link
@@ -6,14 +8,14 @@ describe('Add/Remove Elements Page', () => {
       cy.contains('Add/Remove Elements').click();
 
       // Assert correct page loads
-      cy.url().should('contain', 'add_remove_elements');
+      cy.url().should('contain', PAGE_URL);
     });
   });
 
   describe('Functionality', () => {
     beforeEach(() => {
       // Navigate directly to add/remove elements page
-      cy.visit('add_remove_elements/');
+      cy.visit(PAGE_URL);
     });
 
     it('Should successfully add and remove element', () => {
@@ -21,10 +23,7 @@ describe('Add/Remove Elements Page', () => {
       cy.get('button').contains('Add Element').click();
       cy.get('#elements')
         .find('button')
-        .then((elements) => {
-          // Assertion: only one element was added
-          expect(elements.length).to.eql(1);
-        });
+        .should('have.length', 1);
 
       // Click created 'Delete' element and assert removal
       cy.get('button').contains('Delete').click();
@@ -43,10 +42,7 @@ describe('Add/Remove Elements Page', () => {
       // Assert the correct number of elements were added
       cy.get('#elements')
         .find('button')
-        .then((buttonList) => {
-          // Assertion: one element was added for each click
-          expect(buttonList.length).to.eql(ELEMENT_NUM);
-        });
+        .should('have.length', ELEMENT_NUM);
 
       // Click each 'Delete' element added
       cy.loop(ELEMENT_NUM).each(() => {
