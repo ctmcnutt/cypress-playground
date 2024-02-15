@@ -1,5 +1,3 @@
-import './commands'
-
 // On log change, check new item for truncation (if over 25 characters)
 Cypress.on('log:changed', () => {
     const logList = window.top.document.querySelectorAll('.command-message-text');
