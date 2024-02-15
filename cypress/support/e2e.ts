@@ -1,20 +1,8 @@
-// ***********************************************************
-// This example support/e2e.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
-
-// Import commands.js using ES2015 syntax:
-import './commands'
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// On log change, check new item for truncation (if over 25 characters)
+Cypress.on('log:changed', () => {
+    const logList = window.top.document.querySelectorAll('.command-message-text');
+    const newLog = logList.item(logList.length-1);
+    if(newLog.textContent.length > 25) {
+        newLog.textContent = `${newLog.textContent.slice(0, 25)}...`
+    }
+})
