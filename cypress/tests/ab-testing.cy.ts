@@ -13,14 +13,12 @@ describe('A/B Testing Page', () => {
   });
 
   describe('Functionality', () => {
-    beforeEach(() => {
+    const HEADER_TEXT = 'A/B Test';
+    const BODY_TEXT = 'Also known as split testing';
+    
+    it('Should successfully display page contents', () => {
       // Directly navigate to a/b testing page
       cy.visit(PAGE_URL);
-    });
-
-    it('Should successfully display page contents', () => {
-      const HEADER_TEXT = 'A/B Test';
-      const BODY_TEXT = 'Also known as split testing';
 
       // Assert header contains correct text and is visible
       cy.get('#content')
