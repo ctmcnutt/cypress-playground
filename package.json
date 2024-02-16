@@ -1,6 +1,10 @@
 {
-    "dependencies": {
-        "cypress": "latest",
-        "typescript": "^5.3.3"
-    }
+  "dependencies": {
+    "cypress": "latest",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "prettier": "prettier . --write"
+  }
 }

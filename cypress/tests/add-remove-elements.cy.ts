@@ -21,9 +21,7 @@ describe('Add/Remove Elements Page', () => {
     it('Should successfully add and remove element', () => {
       // Click 'Add Element' button and assert one new element was added
       cy.get('button').contains('Add Element').click();
-      cy.get('#elements')
-        .find('button')
-        .should('have.length', 1);
+      cy.get('#elements').find('button').should('have.length', 1);
 
       // Click created 'Delete' element and assert removal
       cy.get('button').contains('Delete').click();
@@ -40,9 +38,7 @@ describe('Add/Remove Elements Page', () => {
       });
 
       // Assert the correct number of elements were added
-      cy.get('#elements')
-        .find('button')
-        .should('have.length', ELEMENT_NUM);
+      cy.get('#elements').find('button').should('have.length', ELEMENT_NUM);
 
       // Click each 'Delete' element added
       cy.loop(ELEMENT_NUM).each(() => {
