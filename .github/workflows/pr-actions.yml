@@ -1,7 +1,7 @@
 name: pr-actions
 on: 
   push:
-    branches: [main]
+    branches: [11-implement-cicd-with-github-actions]
 jobs:
   run-cypress:
     runs-on: ubuntu-latest
