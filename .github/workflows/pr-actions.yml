@@ -1,5 +1,7 @@
 name: pr-actions
-on: [pull_request]
+on: 
+  push:
+    branches: [main]
 jobs:
   run-cypress:
     runs-on: ubuntu-latest
