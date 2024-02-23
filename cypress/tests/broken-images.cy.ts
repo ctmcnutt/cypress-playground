@@ -1,27 +1,25 @@
-describe('Broken Images Page', () => {
-  const PAGE_URL = 'broken_images';
-  const BROKEN_IMG_1_SRC = 'asdf.jpg';
-  const BROKEN_IMG_2_SRC = 'asdf.jpg';
-  const AVATAR_IMG_SRC = 'img/avatar-blank.jpg';
+import { HomePage } from '../support/page-objects/home.po';
+import { BrokenImagesPage } from '../support/page-objects/broken-images.po';
 
+describe('Broken Images Page', () => {
   describe('Navigation', () => {
     it('Should be linked correctly from home page', () => {
       // Visit home page and click the correct link
-      cy.visit('/');
-      cy.get('a').contains('Broken Images').click();
+      HomePage.visit();
+      cy.get('a').contains(BrokenImagesPage.HOME_LINK_TEXT).click();
 
       // Assert correct page loads
-      cy.url().should('contain', PAGE_URL);
+      cy.url().should('contain', BrokenImagesPage.PAGE_URL);
     });
   });
 
   describe('Functionality', () => {
     it('Should display the expected images', () => {
       // Visit URL and assert that each expected image is visible on the page
-      cy.visit(PAGE_URL);
-      cy.get(`img[src="${BROKEN_IMG_1_SRC}"]`).should('be.visible');
-      cy.get(`img[src="${BROKEN_IMG_2_SRC}"]`).should('be.visible');
-      cy.get(`img[src="${AVATAR_IMG_SRC}"]`).should('be.visible');
+      BrokenImagesPage.visit();
+      BrokenImagesPage.getBrokenImg1().should('be.visible');
+      BrokenImagesPage.getBrokenImg2().should('be.visible');
+      BrokenImagesPage.getAvatarImg().should('be.visible');
     });
   });
 });
