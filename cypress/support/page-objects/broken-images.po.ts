@@ -8,7 +8,7 @@ export class BrokenImagesPage {
   private static AVATAR_IMG_SRC = 'img/avatar-blank.jpg';
 
   static visit() {
-    cy.visit(this.PAGE_URL);
+    return cy.visit(this.PAGE_URL);
   }
   static getBrokenImg1() {
     return cy.get(`img[src="${this.BROKEN_IMG_1_SRC}"]`);

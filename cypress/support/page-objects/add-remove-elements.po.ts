@@ -3,7 +3,7 @@ export class AddRemoveElemPage {
   static HOME_LINK_TEXT = 'Add/Remove Elements';
 
   static visit() {
-    cy.visit(this.PAGE_URL);
+    return cy.visit(this.PAGE_URL);
   }
   static getAddButton() {
     return cy.get('#content > .example > button');

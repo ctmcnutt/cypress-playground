@@ -22,7 +22,7 @@ describe('Add/Remove Elements Page', () => {
     it('Should successfully add and remove element', () => {
       // Click 'Add Element' button and assert one new element was added
       AddRemoveElemPage.getAddButton().click();
-      cy.get('#elements').find('button').should('have.length', 1);
+      AddRemoveElemPage.getDeleteButton().should('have.length', 1);
 
       // Click created 'Delete' element and assert removal
       AddRemoveElemPage.getDeleteButton().click();

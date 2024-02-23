@@ -6,7 +6,7 @@ export class ABTestPage {
   static BODY_TEXT = 'Also known as split testing';
 
   static visit() {
-    cy.visit(this.PAGE_URL);
+    return cy.visit(this.PAGE_URL);
   }
 
   static getHeader() {

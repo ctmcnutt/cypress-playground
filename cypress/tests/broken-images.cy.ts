@@ -15,7 +15,7 @@ describe('Broken Images Page', () => {
 
   describe('Functionality', () => {
     it('Should display the expected images', () => {
-      // Visit URL and assert that each expected image is visible on the page
+      // Visit page and assert that each expected image is visible
       BrokenImagesPage.visit();
       BrokenImagesPage.getBrokenImg1().should('be.visible');
       BrokenImagesPage.getBrokenImg2().should('be.visible');

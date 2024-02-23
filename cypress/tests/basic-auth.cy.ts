@@ -7,10 +7,10 @@ describe('Basic Auth Page Functionality', () => {
 
     // Assert successful authentication by visibility of the contents on the page
     BasicAuthPage.getHeader()
-      .should('contain.text', 'Basic Auth')
+      .should('contain.text', BasicAuthPage.HEADER_TEXT)
       .and('be.visible');
     BasicAuthPage.getBody()
-      .should('contain.text', 'Congratulations!')
+      .should('contain.text', BasicAuthPage.BODY_TEXT)
       .and('be.visible');
   });
 

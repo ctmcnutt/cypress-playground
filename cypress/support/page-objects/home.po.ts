@@ -1,5 +1,5 @@
 export class HomePage {
   static visit() {
-    cy.visit('/');
+    return cy.visit('/');
   }
 }

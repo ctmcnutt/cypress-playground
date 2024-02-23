@@ -1,5 +1,7 @@
 export class BasicAuthPage {
   static PAGE_URL = 'basic_auth';
+  static HEADER_TEXT = 'Basic Auth';
+  static BODY_TEXT = 'Congratulations!';
 
   // Auth credentials used for class functions visitSuccess() and visitFailure()
   private static AUTH_CREDS: Credentials = {
