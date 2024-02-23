@@ -1,31 +1,32 @@
-describe('Add/Remove Elements Page', () => {
-  const PAGE_URL = 'add_remove_elements/';
+import { HomePage } from '../support/page-objects/home.po';
+import { AddRemoveElemPage } from '../support/page-objects/add-remove-elements.po';
 
+describe('Add/Remove Elements Page', () => {
   describe('Navigation', () => {
     it('Should be linked correctly from home page', () => {
       // Visit home page and click the correct link
-      cy.visit('/');
-      cy.contains('Add/Remove Elements').click();
+      HomePage.visit();
+      cy.contains(AddRemoveElemPage.HOME_LINK_TEXT).click();
 
       // Assert correct page loads
-      cy.url().should('contain', PAGE_URL);
+      cy.url().should('contain', AddRemoveElemPage.PAGE_URL);
     });
   });
 
   describe('Functionality', () => {
     beforeEach(() => {
       // Navigate directly to add/remove elements page
-      cy.visit(PAGE_URL);
+      AddRemoveElemPage.visit();
     });
 
     it('Should successfully add and remove element', () => {
       // Click 'Add Element' button and assert one new element was added
-      cy.get('button').contains('Add Element').click();
-      cy.get('#elements').find('button').should('have.length', 1);
+      AddRemoveElemPage.getAddButton().click();
+      AddRemoveElemPage.getDeleteButton().should('have.length', 1);
 
       // Click created 'Delete' element and assert removal
-      cy.get('button').contains('Delete').click();
-      cy.get('button').contains('Delete').should('not.exist');
+      AddRemoveElemPage.getDeleteButton().click();
+      AddRemoveElemPage.getDeleteButton().should('not.exist');
     });
 
     it('Should successfully add and remove multiple elements', () => {
@@ -34,19 +35,19 @@ describe('Add/Remove Elements Page', () => {
 
       // Click 'Add Element' button the number of times defined in ELEMENT_NUM
       cy.loop(ELEMENT_NUM).each(() => {
-        cy.get('button').contains('Add Element').click();
+        AddRemoveElemPage.getAddButton().click();
       });
 
       // Assert the correct number of elements were added
-      cy.get('#elements').find('button').should('have.length', ELEMENT_NUM);
+      AddRemoveElemPage.getDeleteButton().should('have.length', ELEMENT_NUM);
 
       // Click each 'Delete' element added
       cy.loop(ELEMENT_NUM).each(() => {
-        cy.get('#elements > button').first().click();
+        AddRemoveElemPage.getDeleteButton().first().click();
       });
 
       // Assert no 'Delete' elements remain after all are clicked
-      cy.get('button').contains('Delete').should('not.exist');
+      AddRemoveElemPage.getDeleteButton().should('not.exist');
     });
   });
 });
