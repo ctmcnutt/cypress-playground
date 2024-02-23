@@ -1,21 +1,15 @@
-const PAGE_URL = 'basic_auth';
-const AUTH_CREDS = {
-  username: 'admin',
-  password: Cypress.env('BASIC_AUTH_PASSWORD')
-};
-const BAD_CREDS = {
-  username: 'wrong',
-  password: 'creds'
-};
+import { BasicAuthPage } from '../support/page-objects/basic-auth.po';
 
 describe('Basic Auth Page Functionality', () => {
   it('Should be able to access page with correct credentials', () => {
-    // Visit page with authentication options loaded in (cannot interact with login browser prompt)
-    cy.visit(PAGE_URL, { auth: AUTH_CREDS });
+    // Visit page with correct authentication options loaded in (cannot interact with login browser prompt)
+    BasicAuthPage.visitSuccess();
 
     // Assert successful authentication by visibility of the contents on the page
-    cy.get('h3').contains('Basic Auth').should('be.visible');
-    cy.get('#content > .example > p')
+    BasicAuthPage.getHeader()
+      .should('contain.text', 'Basic Auth')
+      .and('be.visible');
+    BasicAuthPage.getBody()
       .should('contain.text', 'Congratulations!')
       .and('be.visible');
   });
@@ -23,7 +17,7 @@ describe('Basic Auth Page Functionality', () => {
   // This test is being skipped due to a technical limitation with Cypress. The negative case causes an authentication
   // pop-up in the browser, which cannot be interacted with. This test passes with manual intervention
   it.skip('Should not be able to access page with incorrect authentication credentials', () => {
-    cy.visit(PAGE_URL, { auth: BAD_CREDS, failOnStatusCode: false }); // failOnStatusCode: false required to stop test from auto-failing
+    BasicAuthPage.visitFailure();
     cy.get('body').contains('Not authorized').should('be.visible');
   });
 });
