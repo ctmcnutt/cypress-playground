@@ -1,5 +1,8 @@
 export class BasicAuthPage {
-  static PAGE_URL = 'basic_auth';
+  static details: PageDetails = {
+    linkText: 'Basic Auth',
+    pageUrl: 'basic_auth'
+  };
   static HEADER_TEXT = 'Basic Auth';
   static BODY_TEXT = 'Congratulations!';
 
@@ -23,7 +26,8 @@ export class BasicAuthPage {
 
   private static visit(creds: Credentials) {
     // Visit page with required authentication credentials
-    cy.visit(this.PAGE_URL, { auth: creds, failOnStatusCode: false }); // failOnStatusCode: false required to stop test from auto-failing on negative case
+    // failOnStatusCode: false required to stop test from auto-failing on negative case
+    cy.visit(this.details.pageUrl, { auth: creds, failOnStatusCode: false });
   }
 
   static getHeader() {

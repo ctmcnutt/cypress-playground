@@ -1,12 +1,13 @@
 export class ABTestPage {
-  static PAGE_URL = 'abtest';
-  static HOME_LINK_TEXT = 'A/B Testing';
-
+  static details: PageDetails = {
+    linkText: 'A/B Testing',
+    pageUrl: 'abtest'
+  };
   static HEADER_TEXT = 'A/B Test';
   static BODY_TEXT = 'Also known as split testing';
 
   static visit() {
-    return cy.visit(this.PAGE_URL);
+    return cy.visit(this.details.pageUrl);
   }
 
   static getHeader() {
