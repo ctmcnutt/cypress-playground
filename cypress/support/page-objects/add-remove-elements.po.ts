@@ -1,9 +1,11 @@
 export class AddRemoveElemPage {
-  static PAGE_URL = 'add_remove_elements/';
-  static HOME_LINK_TEXT = 'Add/Remove Elements';
+  static details: PageDetails = {
+    linkText: 'Add/Remove Elements',
+    pageUrl: 'add_remove_elements/'
+  };
 
   static visit() {
-    return cy.visit(this.PAGE_URL);
+    return cy.visit(this.details.pageUrl);
   }
   static getAddButton() {
     return cy.get('#content > .example > button');
