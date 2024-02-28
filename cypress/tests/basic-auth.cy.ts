@@ -1,9 +1,15 @@
 import { BasicAuthPage } from '../support/page-objects/basic-auth.po';
 
+// Valid auth credentials
+const VALID_CREDS: Credentials = {
+  username: 'admin',
+  password: Cypress.env('BASIC_AUTH_PASSWORD')
+};
+
 describe('Basic Auth Page Functionality', () => {
   it('Should be able to access page with correct credentials', () => {
     // Visit page with correct authentication options loaded in (cannot interact with login browser prompt)
-    BasicAuthPage.visitSuccess();
+    BasicAuthPage.visit(VALID_CREDS.username, VALID_CREDS.password);
 
     // Assert successful authentication by visibility of the contents on the page
     BasicAuthPage.getHeader()
@@ -14,10 +20,8 @@ describe('Basic Auth Page Functionality', () => {
       .and('be.visible');
   });
 
-  // This test is being skipped due to a technical limitation with Cypress. The negative case causes an authentication
-  // pop-up in the browser, which cannot be interacted with. This test passes with manual intervention
-  it.skip('Should not be able to access page with incorrect authentication credentials', () => {
-    BasicAuthPage.visitFailure();
+  it('Should not be able to access page with incorrect authentication credentials', () => {
+    BasicAuthPage.visit('Invalid', 'Invalid');
     cy.get('body').contains('Not authorized').should('be.visible');
   });
 });

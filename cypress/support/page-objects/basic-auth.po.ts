@@ -6,28 +6,13 @@ export class BasicAuthPage {
   static HEADER_TEXT = 'Basic Auth';
   static BODY_TEXT = 'Congratulations!';
 
-  // Auth credentials used for class functions visitSuccess() and visitFailure()
-  private static AUTH_CREDS: Credentials = {
-    username: 'admin',
-    password: Cypress.env('BASIC_AUTH_PASSWORD')
-  };
-  private static BAD_CREDS: Credentials = {
-    username: 'wrong',
-    password: 'creds'
-  };
-
-  static visitSuccess() {
-    this.visit(this.AUTH_CREDS);
-  }
-
-  static visitFailure() {
-    this.visit(this.BAD_CREDS);
-  }
-
-  private static visit(creds: Credentials) {
+  static visit(username: string, password: string) {
     // Visit page with required authentication credentials
     // failOnStatusCode: false required to stop test from auto-failing on negative case
-    cy.visit(this.details.pageUrl, { auth: creds, failOnStatusCode: false });
+    cy.visit(this.details.pageUrl, {
+      auth: { username, password },
+      failOnStatusCode: false
+    });
   }
 
   static getHeader() {

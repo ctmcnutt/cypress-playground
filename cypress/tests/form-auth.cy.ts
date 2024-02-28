@@ -1,6 +1,12 @@
 import { FormAuthPage } from '../support/page-objects/form-auth.po';
 import { SecurePage } from '../support/page-objects/secure.po';
 
+// Valid credentials for login
+const AUTH_CREDS: Credentials = {
+  username: 'tomsmith',
+  password: Cypress.env('FORM_AUTH_PASSWORD')
+};
+
 describe('Form Authentication Page Functionality', () => {
   beforeEach(() => {
     // Navigate to page
@@ -9,8 +15,8 @@ describe('Form Authentication Page Functionality', () => {
 
   it('Should successfully submit login form with valid credentials, then log out', () => {
     // Complete a successful login
-    FormAuthPage.enterUsername(FormAuthPage.AUTH_CREDS.username);
-    FormAuthPage.enterPassword(FormAuthPage.AUTH_CREDS.password);
+    FormAuthPage.enterUsername(AUTH_CREDS.username);
+    FormAuthPage.enterPassword(AUTH_CREDS.password);
     FormAuthPage.clickSubmitButton();
 
     // Assert on successful form submission
