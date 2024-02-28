@@ -1,11 +1,21 @@
 export class BasicAuthPage {
+  // Page Details
   static details: PageDetails = {
     linkText: 'Basic Auth',
     pageUrl: 'basic_auth'
   };
+
+  // Page Selectors
+  private static selectors = {
+    header: 'div.example > h3',
+    body: 'div.example > p'
+  };
+
+  // Page Text
   static HEADER_TEXT = 'Basic Auth';
   static BODY_TEXT = 'Congratulations!';
 
+  // Page Functions
   static visit(username: string, password: string) {
     // Visit page with required authentication credentials
     // failOnStatusCode: false required to stop test from auto-failing on negative case
@@ -16,10 +26,10 @@ export class BasicAuthPage {
   }
 
   static getHeader() {
-    return cy.get('div.example > h3');
+    return cy.get(this.selectors.header);
   }
 
   static getBody() {
-    return cy.get('div.example > p');
+    return cy.get(this.selectors.body);
   }
 }
