@@ -4,16 +4,6 @@ export class FormAuthPage {
     pageUrl: 'login'
   };
 
-  static AUTH_CREDS: Credentials = {
-    username: 'tomsmith',
-    password: Cypress.env('FORM_AUTH_PASSWORD')
-  };
-
-  static BAD_CREDS: Credentials = {
-    username: 'wrong',
-    password: 'wrong'
-  };
-
   static visit() {
     return cy.visit(this.details.pageUrl);
   }
