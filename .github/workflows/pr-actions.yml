@@ -12,3 +12,4 @@ jobs:
       - run: npm run cypress:run
         env:
           CYPRESS_BASIC_AUTH_PASSWORD: ${{ secrets.CYPRESS_BASIC_AUTH_PASSWORD }}
+          CYPRESS_FORM_AUTH_PASSWORD: ${{ secrets.CYPRESS_FORM_AUTH_PASSWORD }}

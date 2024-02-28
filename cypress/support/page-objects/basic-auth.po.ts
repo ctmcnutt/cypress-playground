@@ -38,8 +38,3 @@ export class BasicAuthPage {
     return cy.get('div.example > p');
   }
 }
-
-interface Credentials {
-  username: string;
-  password: string;
-}
