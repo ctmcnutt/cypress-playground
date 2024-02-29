@@ -5,15 +5,15 @@ export class BasicAuthPage {
     pageUrl: 'basic_auth'
   };
 
+  // Page Data
+  static HEADER_TEXT = 'Basic Auth';
+  static BODY_TEXT = 'Congratulations!';
+
   // Page Selectors
   private static selectors = {
     header: 'div.example > h3',
     body: 'div.example > p'
   };
-
-  // Page Text
-  static HEADER_TEXT = 'Basic Auth';
-  static BODY_TEXT = 'Congratulations!';
 
   // Page Functions
   static visit(username: string, password: string) {

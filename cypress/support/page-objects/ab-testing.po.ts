@@ -5,15 +5,15 @@ export class ABTestPage {
     pageUrl: 'abtest'
   };
 
-  // Selectors
+  // Page Data
+  static HEADER_TEXT = 'A/B Test';
+  static BODY_TEXT = 'Also known as split testing';
+
+  // Page Selectors
   private static selectors = {
     header: '#content h3',
     body: '#content p'
   };
-
-  // Page Text
-  static HEADER_TEXT = 'A/B Test';
-  static BODY_TEXT = 'Also known as split testing';
 
   // Page Functions
   static visit() {
