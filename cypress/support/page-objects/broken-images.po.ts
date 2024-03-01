@@ -5,7 +5,7 @@ export class BrokenImagesPage {
     pageUrl: 'broken_images'
   };
 
-  // Private variables for image sources (used in selectors)
+  // Page Data
   private static BROKEN_IMG_1_SRC = 'asdf.jpg';
   private static BROKEN_IMG_2_SRC = 'asdf.jpg';
   private static AVATAR_IMG_SRC = 'img/avatar-blank.jpg';
