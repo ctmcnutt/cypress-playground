@@ -8,6 +8,13 @@ declare global {
        * @example cy.loop(10).each(() => { ... })
        */
       loop(times: number): Chainable<any[]>;
+
+      regexFormat(text: string): Chainable<string>;
+
+      assertFileDownload(
+        fileName: string,
+        retries?: number
+      ): Chainable<boolean>;
     }
   }
 }
@@ -15,3 +22,25 @@ declare global {
 Cypress.Commands.add('loop', (times: number) => {
   cy.wrap(new Array(times));
 });
+
+Cypress.Commands.add('regexFormat', (text: string) => {
+  return cy.wrap(text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+});
+
+Cypress.Commands.add(
+  'assertFileDownload',
+  (fileName: string, retries: number = 15) => {
+    cy.task(
+      'checkFileExists',
+      `${Cypress.config().downloadsFolder}/${fileName}`
+    ).then((exists) => {
+      if (exists) {
+        return true;
+      } else if (!retries) {
+        throw Error('File was never downloaded');
+      } else {
+        return cy.wait(1000).assertFileDownload(fileName, retries - 1);
+      }
+    });
+  }
+);
