@@ -7,7 +7,7 @@ describe('File Download Page Functionality', () => {
     FileDownloadPage.visit();
   });
 
-  it('Should download first available file in list', () => {
+  it('Should successfully download first available file in list', () => {
     // Click the first download link on the page
     FileDownloadPage.getAvailableFiles()
       .first()
@@ -21,7 +21,7 @@ describe('File Download Page Functionality', () => {
 
   // This test successfully runs, but is more of a demonstration of what is possible.
   // The dataset on this page is inconsistent, and may occasionally include large files.
-  it.skip('Should download all available files successfully', () => {
+  it.skip('Should successfully download all available files in list', () => {
     // Get all download links on page
     FileDownloadPage.getAvailableFiles().each((file) => {
       // For each, download file and assert successful download
