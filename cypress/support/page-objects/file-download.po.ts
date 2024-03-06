@@ -16,14 +16,16 @@ export class FileDownloadPage {
   }
 
   static downloadFile(fileName: string) {
-    return cy.regexFormat(fileName).then((formattedFileName) => {
-      cy.get(this.selectors.downloadLink)
-        .contains(new RegExp(`^${formattedFileName}$`)) // Regular expression allows for exact matching of file name
-        .click();
-    });
+    cy.get(this.selectors.downloadLink)
+      .contains(new RegExp(`^${this.formatRegex(fileName)}$`)) // Regular expression allows for exact matching of file name
+      .click();
   }
 
   static getAvailableFiles() {
     return cy.get(this.selectors.downloadLink);
+  }
+
+  private static formatRegex(text: string) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Format special characters for use in regular expressions
   }
 }

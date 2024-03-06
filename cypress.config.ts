@@ -8,15 +8,15 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       on('task', {
         checkFileExists(filePath: string) {
-          let something = fs.existsSync(filePath);
-          console.log(something);
-          return something;
+          return fs.existsSync(filePath);
         },
         deleteDownloads() {
           try {
+            // Try: Remove the downloads folder
             fs.rmSync('./cypress/downloads/', { recursive: true });
             return true;
           } catch {
+            // Catch: Downloads folder doesn't exist. Return and keep going
             return true;
           }
         }
