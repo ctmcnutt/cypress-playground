@@ -21,9 +21,10 @@ export class KeyPressesPage {
   }
 
   static assertNotification(key: string) {
+    const EXPECTED = key === ' ' ? 'SPACE' : key.toUpperCase();
     cy.get(this.selectors.keyNotification).should(
       'have.text',
-      `You entered: ${key}`
+      `You entered: ${EXPECTED}`
     );
   }
 }
