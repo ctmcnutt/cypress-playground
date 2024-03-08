@@ -24,9 +24,8 @@ export class KeyPressesPage {
     // Ternary logic to get key press ready for assertion
     const EXPECTED = key === ' ' ? 'SPACE' : key.toUpperCase();
 
-    return cy.get(this.selectors.keyNotification).should(
-      'have.text',
-      `You entered: ${EXPECTED}`
-    );
+    return cy
+      .get(this.selectors.keyNotification)
+      .should('have.text', `You entered: ${EXPECTED}`);
   }
 }
