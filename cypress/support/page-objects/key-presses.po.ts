@@ -17,12 +17,14 @@ export class KeyPressesPage {
   }
 
   static enterKey(key: string) {
-    cy.get(this.selectors.inputElement).type(key);
+    return cy.get(this.selectors.inputElement).type(key);
   }
 
   static assertNotification(key: string) {
+    // Ternary logic to get key press ready for assertion
     const EXPECTED = key === ' ' ? 'SPACE' : key.toUpperCase();
-    cy.get(this.selectors.keyNotification).should(
+
+    return cy.get(this.selectors.keyNotification).should(
       'have.text',
       `You entered: ${EXPECTED}`
     );
